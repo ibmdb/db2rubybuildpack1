@@ -22,8 +22,8 @@ class LanguagePack::Ruby < LanguagePack::Base
   JVM_BASE_URL         = "http://heroku-jdk.s3.amazonaws.com"
   JVM_VERSION          = "openjdk7-latest"
   DEFAULT_RUBY_VERSION = "ruby-1.9.3"
-  DB2_DSDRIVER_URL     = "http://9.38.14.143/projects/mdbs/cff/v10.5fp3_linuxx64_dsdriver.tar.gz"
-  DB2_DSDRIVER_FILE    = "db2cli.tar.gz"
+  DB2_DSDRIVER_URL     = "https://www.ng.bluemix.net/docs/Services/BluStratus/samples/clidriver.tgz"
+  DB2_DSDRIVER_FILE    = "clidriver.tgz"
   DB2_DSDRIVER_STAGING_LOC = "/tmp/staged/app/vendor/bundle"
   DB2_DSDRIVER_RUNTIME_LOC = "$HOME/vendor/bundle/clidriver/lib"
 
@@ -682,7 +682,7 @@ params = CGI.parse(uri.query || "")
 	if File.exist?("#{DB2_DSDRIVER_STAGING_LOC}/clidriver/lib/libdb2.so")
 	 # nothing to do, is there from cache
 	else
-	  puts "downloading and untarring DB2 CLI driver.... this can take sometime"
+	  puts "downloading and untarring DB2 CLI driver...."
 	  if fetch_package_and_untar_to_folder(DB2_DSDRIVER_FILE, DB2_DSDRIVER_URL, DB2_DSDRIVER_STAGING_LOC)
          puts "setting DB2 ODBC driver ENV variables"
       else

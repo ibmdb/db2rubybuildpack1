@@ -26,12 +26,6 @@ module LanguagePack
    
    def fetch_package_and_untar_to_folder(filename, url, stagedDestfolder)
       run("curl #{url} -s -o #{filename}") && run("tar xvzf #{filename} -C #{stagedDestfolder}")
-      # extract the ODBC_CLI gz to root... these 2 are if u use the DSDriver
-      run("tar xvzf #{stagedDestfolder}/dsdriver/odbc_cli_driver/linuxamd64/ibm_data_server_driver_for_odbc_cli.tar.gz -C #{stagedDestfolder}")
-      # delete all other files
-      run("rm -rf #{stagedDestfolder}/dsdriver")
-      # delete downloaded gz file
-      run("rm -f #{filename}")
       # return if file exists
       File.exist?("#{stagedDestfolder}/clidriver/lib/libdb2.so")
    end
