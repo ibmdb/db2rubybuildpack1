@@ -27,7 +27,7 @@ module LanguagePack
    def fetch_package_and_untar_to_folder(filename, url, stagedDestfolder)
       run("curl #{url} -s -o #{filename}") && run("tar xvzf #{filename} -C #{stagedDestfolder}")
       # return if file exists
-      File.exist?("#{stagedDestfolder}/clidriver/lib/libdb2.so")
+      File.exist?("#{stagedDestfolder}/odbc_cli/clidriver/lib/libdb2.so")
    end
 
     private

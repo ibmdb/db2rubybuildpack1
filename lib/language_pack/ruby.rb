@@ -22,10 +22,10 @@ class LanguagePack::Ruby < LanguagePack::Base
   JVM_BASE_URL         = "http://heroku-jdk.s3.amazonaws.com"
   JVM_VERSION          = "openjdk7-latest"
   DEFAULT_RUBY_VERSION = "ruby-1.9.3"
-  DB2_DSDRIVER_URL     = "https://www.ng.bluemix.net/docs/Services/BluStratus/samples/clidriver.tgz"
+  DB2_DSDRIVER_URL     = "https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/linuxx64_odbc_cli.tar.gz"
   DB2_DSDRIVER_FILE    = "clidriver.tgz"
   DB2_DSDRIVER_STAGING_LOC = "/tmp/staged/app/vendor/bundle"
-  DB2_DSDRIVER_RUNTIME_LOC = "$HOME/vendor/bundle/clidriver/lib"
+  DB2_DSDRIVER_RUNTIME_LOC = "$HOME/vendor/bundle/odbc_cli/clidriver/lib"
 
   # detects if this is a valid Ruby app
   # @return [Boolean] true if it's a Ruby app
@@ -679,18 +679,18 @@ params = CGI.parse(uri.query || "")
 	
 	# install db2 ODBC if required
 	
-	if File.exist?("#{DB2_DSDRIVER_STAGING_LOC}/clidriver/lib/libdb2.so")
-	 # nothing to do, is there from cache
+	if File.exist?("#{DB2_DSDRIVER_STAGING_LOC}/odbc_cli/clidriver/lib/libdb2.so")
+	  # nothing to do, is there from cache
 	else
 	  puts "downloading and untarring DB2 CLI driver...."
 	  if fetch_package_and_untar_to_folder(DB2_DSDRIVER_FILE, DB2_DSDRIVER_URL, DB2_DSDRIVER_STAGING_LOC)
-         puts "setting DB2 ODBC driver ENV variables"
-      else
-         error "Failed to download DB2 ODBC driver. Check if #{DB2_DSDRIVER_URL} is available "
+            puts "setting DB2 ODBC driver ENV variables"
+          else
+            error "Failed to download DB2 ODBC driver. Check if #{DB2_DSDRIVER_URL} is available "
 	  end
 	end
 	
-	ENV["IBM_DB_HOME"]     = "#{DB2_DSDRIVER_STAGING_LOC}/clidriver"
+	ENV["IBM_DB_HOME"]     = "#{DB2_DSDRIVER_STAGING_LOC}/odbc_cli/clidriver"
     set_env_override "LD_LIBRARY_PATH", "#{DB2_DSDRIVER_RUNTIME_LOC}:$LD_LIBRARY_PATH"
     
 	
