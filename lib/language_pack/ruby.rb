@@ -22,7 +22,7 @@ class LanguagePack::Ruby < LanguagePack::Base
   JVM_BASE_URL         = "http://heroku-jdk.s3.amazonaws.com"
   JVM_VERSION          = "openjdk7-latest"
   DEFAULT_RUBY_VERSION = "ruby-1.9.3"
-  DB2_DSDRIVER_URL     = "https://www.ng.bluemix.net/docs/Services/BluStratus/samples/clidriver.tgz"
+  DB2_DSDRIVER_URL     = "https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/linuxx64_odbc_cli.tar.gz"
   DB2_DSDRIVER_FILE    = "clidriver.tgz"
   DB2_DSDRIVER_STAGING_LOC = "/tmp/staged/app/vendor/bundle"
   DB2_DSDRIVER_RUNTIME_LOC = "$HOME/vendor/bundle/clidriver/lib"
